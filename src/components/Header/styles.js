@@ -10,9 +10,10 @@ export const Container = styled.header`
 
   .row {
     justify-content: space-between;
+    margin: 0 5px;
   }
   .header__logo img {
-    max-height: 40px;
+    max-height: 30px;
   }
 
   .header__actions {
