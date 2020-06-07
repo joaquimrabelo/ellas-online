@@ -8,17 +8,7 @@ export const Container = styled.header`
   display: flex;
   align-items: center;
 
-  .row {
-    justify-content: space-between;
-    margin: 0 5px;
-  }
-  .header__logo img {
-    max-height: 30px;
-  }
-
-  .header__actions {
-    a + a {
-      margin-left: 8px;
-    }
+  .container {
+    padding: 0 5px;
   }
 `;

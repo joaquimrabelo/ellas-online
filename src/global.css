@@ -24,6 +24,7 @@ button {
   display: flex;
   flex-direction: column;
   margin: 0 10px;
+  width: calc(100% - 20px);
 }
 .row {
   display: flex;

@@ -9,6 +9,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
+  position: relative;
+
   @media only screen and (min-width: 468px) {
     width: calc(33.33% - 10px);
   }
@@ -27,10 +29,20 @@ export const Container = styled.div`
 
   figure {
     text-align: center;
-    
+
     img {
       max-width: 100%;
     }
+  }
+
+  .discount {
+    position: absolute;
+    font-size: 14px;
+    padding: 2px 7px;
+    top: 0;
+    left: 0;
+    background-color: #de4242;
+    color: #fff;
   }
 
   .product__info {

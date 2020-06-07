@@ -6,7 +6,6 @@ import { Container } from './styles';
 function Product({ product }) {
   const [image, setImage] = useState(product.image)
   console.log(product);
-
   function handleImageError() {
     setImage(imagemIndisponivel);
   }
@@ -14,6 +13,7 @@ function Product({ product }) {
   return (
     <Container>
       <figure>
+        {product.on_sale && <span className="discount">{product.discount_percentage}</span>}
         <img 
           src={image} 
           alt={product.name} 
