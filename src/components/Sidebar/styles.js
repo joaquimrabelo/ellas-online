@@ -32,6 +32,10 @@ export const Container = styled.div`
       width: 400px;
       height: 100vh;
       background: #f9f9f9;
+
+      .product {
+        width: calc(50% - 10px);
+      }
       
       .container {
         margin: 0 10px;

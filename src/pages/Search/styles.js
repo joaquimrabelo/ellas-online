@@ -13,5 +13,8 @@ export const ContainerHeader = styled.div`
 `;
 
 export const Container = styled.div`
-
+  input {
+    margin-top: 20px;
+    height: 40px;
+  }
 `;

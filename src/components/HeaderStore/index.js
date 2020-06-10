@@ -2,11 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 
+import { useSidebar } from '../../hooks/Sidebar';
+import { useCart } from '../../hooks/Cart';
+
 import logoImg from '../../assets/logo.png';
 import Header from '../Header';
 import { Container } from './styles';
 
-function HeaderHome({ handleSearchSidebar, handleCartSidebar }) {
+function HeaderStore() {
+  const { totalCart } = useCart();
+  const { handleSearchSidebar, handleCartSidebar } = useSidebar();
   return (
     <Header>
       <Container>
@@ -17,7 +22,8 @@ function HeaderHome({ handleSearchSidebar, handleCartSidebar }) {
           <button type="button" onClick={handleSearchSidebar}>
             <FiSearch size={24} />
           </button>
-          <button type="button" onClick={handleCartSidebar}>
+          <button className="button__cart" type="button" onClick={handleCartSidebar}>
+            <span className="counter__cart">{totalCart}</span>
             <FiShoppingCart size={24} />
           </button>
         </div>
@@ -26,4 +32,4 @@ function HeaderHome({ handleSearchSidebar, handleCartSidebar }) {
   )
 }
 
-export default HeaderHome;
+export default HeaderStore;

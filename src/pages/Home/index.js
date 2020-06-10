@@ -1,47 +1,30 @@
 import React, { useState, useEffect} from 'react';
 
-import api from '../../services/api';
-import CreateSlug from '../../utils/CreateSlug';
+import { useSidebar } from '../../hooks/Sidebar';
+import { useProduct } from '../../hooks/Product';
 
-import HeaderHome from '../../components/HeaderHome';
+import ContainerStore from '../../components/ContainerStore';
+import HeaderStore from '../../components/HeaderStore';
 import Loading from '../../components/Loading';
 import ProductList from '../../components/ProductList';
 import Search from '../Search';
 import Cart from '../Cart';
 
-import { Container } from './styles';
+//import { Container } from './styles';
 
 function Home() {
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true)
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
-
-  const handleSearchSidebar = () => {
-    console.log('handle search');
-    setSearchOpen(!searchOpen);
-  }
-
-  const handleCartSidebar = () => {
-    console.log('cart open');
-    setCartOpen(!cartOpen);
-  }
+  
+  const { searchOpen, cartOpen } = useSidebar();
+  const { products, loadProducts } = useProduct();
 
   useEffect(() => {
-    async function loadProducts() {
-      const response = await api.get();
-      const productsData = response.data.map(product => {
-        return {
-          ...product,
-          slug: CreateSlug(product.name)
-        }
-      })
-      setProducts(productsData);
+    async function getProducts() {
+      await loadProducts();
       setLoading(false);
-      console.log('loaded');
     }
-    loadProducts();
-  }, []);
+    getProducts();
+  }, [loadProducts]);
 
   if (loading) {
     return (
@@ -49,12 +32,12 @@ function Home() {
     )
   } else {
     return (
-      <Container className={searchOpen || cartOpen ? 'sidebar--active' : ''}>
-        <HeaderHome handleSearchSidebar={handleSearchSidebar} handleCartSidebar={handleCartSidebar} />
+      <ContainerStore customClass={searchOpen || cartOpen ? 'sidebar--active' : ''}>
+        <HeaderStore />
         <ProductList products={products} />
-        <Search searchOpen={searchOpen} handleSearchSidebar={handleSearchSidebar} />
-        <Cart cartOpen={cartOpen} handleCartSidebar={handleCartSidebar} />
-      </Container>
+        <Search searchOpen={searchOpen} />
+        <Cart cartOpen={cartOpen} />
+      </ContainerStore>
     )
   }
 };

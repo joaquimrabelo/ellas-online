@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   box-shadow: 0px 0px 3px 1px rgba(150, 150, 150, 0.3);
   background-color: #fff;
+  text-decoration: none;
 
   width: calc(50% - 10px);
   margin: 0 5px 20px;

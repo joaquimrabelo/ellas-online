@@ -1,14 +1,15 @@
 import React from 'react';
 import { FiXCircle } from 'react-icons/fi';
 
+import { useSidebar } from '../../hooks/Sidebar';
+
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 
 import { ContainerHeader, Container } from './styles';
 
-function Cart({ cartOpen, handleCartSidebar }) {
-  console.log('cartopen', cartOpen);
-  console.log('handlecart', handleCartSidebar);
+function Cart() {
+  const { cartOpen, handleCartSidebar } = useSidebar();
   return (
     <Sidebar sidebarClass={`sidebar__cart ${cartOpen ? 'active' : '' }`}>
       <Header>

@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 
+import { useSidebar } from '../../hooks/Sidebar';
+
 import imagemIndisponivel from '../../assets/imagem-indisponivel.png';
 import { Container } from './styles';
 
 function Product({ product }) {
   const [image, setImage] = useState(product.image)
-  console.log(product);
+
+  const { handleCloseSidebar } = useSidebar();
+
   function handleImageError() {
     setImage(imagemIndisponivel);
   }
 
   return (
-    <Container>
+    <Container onClick={handleCloseSidebar} className="product" to={`/product/${product.slug}`}>
+      {product.on_sale && <span className="discount">{product.discount_percentage}</span>}
       <figure>
-        {product.on_sale && <span className="discount">{product.discount_percentage}</span>}
         <img 
           src={image} 
           alt={product.name} 
