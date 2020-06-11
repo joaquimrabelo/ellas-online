@@ -11,9 +11,14 @@ const ProductProvider = ({ children }) => {
   const loadProducts = useCallback(async () => {
     const response = await api.get();
       const productsData = response.data.map(product => {
+        const price = parseFloat(product
+          .actual_price.replace(/[^0-9,]+/g, '')
+          .replace(',','.'));
+        const novoSlug = CreateSlug(product.name);
         return {
           ...product,
-          slug: CreateSlug(product.name)
+          price,
+          slug:  `${novoSlug}-${product.code_color}`
         }
       })
       setProducts(productsData);

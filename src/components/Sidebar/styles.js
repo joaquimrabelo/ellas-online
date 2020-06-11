@@ -25,6 +25,7 @@ export const Container = styled.div`
     height: 100vh;
     background: #f9f9f9;
     color: #212529;
+    position: relative;
   }
 
   @media only screen and (min-width: 768px) {
@@ -39,6 +40,7 @@ export const Container = styled.div`
       
       .container {
         margin: 0 10px;
+        width: 380px;
       }
     }
   }

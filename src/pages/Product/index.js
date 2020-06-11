@@ -13,15 +13,15 @@ import Cart from '../Cart';
 import { Container } from './styles';
 
 function Product({ match }) {
-  const productSlug = match.params.slug;
   const { getProduct } = useProduct();
-  const product = getProduct(productSlug);
+  const product = getProduct(match.params.slug);
   const { addToCart } = useCart();
 
   const { searchOpen, cartOpen } = useSidebar();
   const [image, setImage] = useState(imagemIndisponivel);
-  const [tamanho, setTamanho] = useState(null);
-  const [errorTamanho, setErrorTamanho] = useState(false);
+  const [size, setSize] = useState(null);
+  const [sku, setSku] = useState(null);
+  const [errorSize, setErrorSize] = useState(false);
 
   useEffect(() => {
     if(product) {
@@ -33,17 +33,18 @@ function Product({ match }) {
     setImage(imagemIndisponivel);
   }
 
-  function handleSelectSize(sku) {
-    setTamanho(sku);
+  function handleSelectSize(selectedSize, sku) {
+    setSize(selectedSize);
+    setSku(sku);
   }
 
   function handleAddToCart() {
-    if (!tamanho) {
-      setErrorTamanho(true);
+    if (!size) {
+      setErrorSize(true);
       return;
     }
     
-    addToCart(product.style, tamanho);
+    addToCart(product.code_color, sku, size);
 
   }
 
@@ -74,15 +75,15 @@ function Product({ match }) {
               </div>
               <div className="size__options">
                 <span>Selecione um tamanho</span>
-                {errorTamanho && 
+                {errorSize && 
                   <span className="size--error">É necessário escolher o tamanho</span>}
                 <div>
                   {product.sizes.map(item => (
                     <button
                       key={item.sku}
-                      className={tamanho === item.sku ? 'selected' : ''}
+                      className={size === item.size ? 'selected' : ''}
                       disabled={!item.available ? true : false}
-                      onClick={() => handleSelectSize(item.sku)}>{item.size}
+                      onClick={() => handleSelectSize(item.size, item.sku)}>{item.size}
                     </button>
                   ))}
                 </div>
