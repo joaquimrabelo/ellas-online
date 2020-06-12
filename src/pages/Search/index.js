@@ -20,7 +20,6 @@ function Search() {
   useEffect(() => {
     if (search.length >= 3) {
       const prod = products.filter(product => product.slug.includes(search));
-      console.log('prod', prod);
       setFilteredProducts(prod);
     } else {
       setFilteredProducts([]);

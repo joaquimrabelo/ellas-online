@@ -36,8 +36,6 @@ function Cart() {
       return total + (item.quant * item.price);
     }, 0);
 
-
-console.log('all products', cartProducts);
   return (
     <Sidebar sidebarClass={`sidebar__cart ${cartOpen ? 'active' : '' }`}>
       <Header>

@@ -18,11 +18,6 @@ const CartProvider = ({ children }) => {
     localStorage.setItem('@ellasCart', JSON.stringify(cartData));
   }
 
-  useEffect(() => {
-    console.log('#### LOAD DADOS CART');
-    //setTotalCart(0);
-  }, []);
-
   const searchProduct = (code_color, sku) => {
     return cart.find(product => (product.code_color === code_color && product.sku === sku));
   }
@@ -41,7 +36,6 @@ const CartProvider = ({ children }) => {
       });
       saveCart(newCart);
     }
-    console.log(cart);
   }
 
   const increaseProduct = (code_color, sku) => {
