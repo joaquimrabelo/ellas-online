@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FiXCircle } from 'react-icons/fi';
 
 import { useSidebar } from '../../hooks/Sidebar';

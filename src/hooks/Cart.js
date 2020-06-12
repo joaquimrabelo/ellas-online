@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 
 const CartContext = createContext();
 
@@ -14,7 +14,11 @@ const CartProvider = ({ children }) => {
 
   const saveCart = (cartData) => {
     setCart(cartData);
-    setTotalCart(cart.reduce((total, item) => total + item.count, 0));
+    if (cartData.length) {
+      setTotalCart(cart.reduce((total, item) => total + item.count, 0));
+    } else {
+      setTotalCart(0);
+    }
     localStorage.setItem('@ellasCart', JSON.stringify(cartData));
   }
 
@@ -49,6 +53,11 @@ const CartProvider = ({ children }) => {
   }
 
   const decreaseProduct = (code_color, sku) => {
+    const checkProduct = searchProduct(code_color, sku);
+    if (checkProduct.count <= 1) {
+      console.log('vai remover');
+      return removeFromCart(code_color, sku);
+    }
     const newCart = cart.map(item => {
       if (item.code_color === code_color && item.sku === sku) {
         item.count--;
