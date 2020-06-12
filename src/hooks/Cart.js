@@ -10,11 +10,11 @@ const CartProvider = ({ children }) => {
     }
     return [];
   });
-  const [totalCart, setTotalCart] = useState(cart.length);
+  const [totalCart, setTotalCart] = useState(cart.reduce((total, item) => total + item.count, 0));
 
   const saveCart = (cartData) => {
     setCart(cartData);
-    setTotalCart(cartData.length);
+    setTotalCart(cart.reduce((total, item) => total + item.count, 0));
     localStorage.setItem('@ellasCart', JSON.stringify(cartData));
   }
 

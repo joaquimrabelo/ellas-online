@@ -16,6 +16,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+
+  height: 100vh;
+  padding-bottom: 120px;
+  overflow-y: auto;
 `;
 
 export const CartAmount = styled.div`

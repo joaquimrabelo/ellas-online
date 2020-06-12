@@ -26,6 +26,7 @@ export const Container = styled.div`
     background: #f9f9f9;
     color: #212529;
     position: relative;
+
   }
 
   @media only screen and (min-width: 768px) {
