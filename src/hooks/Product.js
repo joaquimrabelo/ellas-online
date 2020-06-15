@@ -10,18 +10,22 @@ const ProductProvider = ({ children }) => {
 
   const loadProducts = useCallback(async () => {
     const response = await api.get();
-      const productsData = response.data.map(product => {
-        const price = parseFloat(product
-          .actual_price.replace(/[^0-9,]+/g, '')
-          .replace(',','.'));
-        const novoSlug = CreateSlug(product.name);
-        return {
-          ...product,
-          price,
-          slug:  `${novoSlug}-${product.code_color}`
-        }
-      })
-      setProducts(productsData);
+
+    //problemas com os dados da API
+    const productsList = response.data.filter(product => product.name);
+    
+    const productsData = productsList.map(product => {
+      const price = parseFloat(product
+        .actual_price.replace(/[^0-9,]+/g, '')
+        .replace(',','.'));
+      const novoSlug = CreateSlug(product.name);
+      return {
+        ...product,
+        price,
+        slug:  `${novoSlug}-${product.code_color}`
+      }
+    });
+    setProducts(productsData);
   }, []);
 
   if (!products.length) {
