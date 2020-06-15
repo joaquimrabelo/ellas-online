@@ -40,7 +40,7 @@ function Cart() {
     <Sidebar sidebarClass={`sidebar__cart ${cartOpen ? 'active' : '' }`}>
       <Header>
         <ContainerHeader>
-          <h3>Buscar produtos</h3>
+          <h3>Meu carrinho</h3>
           <button type="button" onClick={handleCartSidebar}>
             <FiXCircle size={24} />
           </button>
